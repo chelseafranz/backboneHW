@@ -24,14 +24,31 @@
   <body>
 
     <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
+      <h1>Time to Drink.</h1>
+
+      <div class="search">
+<input id="searchInput" placeholder="find a bar by neighborhood">
+<button id="searchButton">search</button>
+      </div>
       
       <ul class="listofBars">
-        
-
       </ul>
+
+      <div class="add">
+    <input placeholder="name" id="nameofBar" type="text">
+    <input placeholder="location" id="locationofBar" type="text">
+    <input placeholder="type" id="typeofBar" type="text">
+    <input placeholder="specialties" id="specialtiesofBar" type="text">
+    <button id="nameButton">Submit</button>
+      </div>
+
+
       
     </div>
+
+    <script id="bars" type="text/template">
+<li><%= name %> in <%= location%> is a total <%=type%> bar, known for <%= specialties%></li>
+    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
