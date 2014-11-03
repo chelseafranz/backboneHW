@@ -1,0 +1,1 @@
+var all_bars= new Bars();
