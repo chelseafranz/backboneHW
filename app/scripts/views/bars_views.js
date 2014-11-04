@@ -24,3 +24,4 @@ var BarsView= Backbone.View.extend({
 	}
 
 });
+

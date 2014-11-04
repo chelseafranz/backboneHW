@@ -1,15 +1,26 @@
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
+@import url(http://weloveiconfonts.com/api/?family=fontelico|iconicstroke);
 
+/* fontelico */
+[class*="fontelico-"]:before {
+  font-family: 'fontelico', sans-serif;
+}
+
+/* iconicstroke */
+[class*="iconicstroke-"]:before {
+  font-family: 'IconicStroke', sans-serif;
+}
 
 .hero-unit {
-  margin: 50px auto 0 auto;
+  margin: 3% 10%;
+  display: block;
   width: 600px;
   font-size: 18px;
   font-weight: 200;
-  line-height: 30px;
-  background-color: #eee;
+  background-color: black;
+  color: white;
   border-radius: 6px;
   padding: 60px;
   float: right;
@@ -20,14 +31,63 @@
   }
 }
 
+.fontelico-emo-beer{
+  color: white;
+  font-size: 2em;
+}
+.iconicstroke-magnifying-glass{
+  font-size: 2em;
+}
+h2{
+  margin-bottom: 5px;
+}
+input{
+  border-radius: 2px;
+  border: 1px solid lightgray;
+  margin: 5px 0;
+ 
+}
+#searchInput{
+  width: 200px;
+}
+
+button{
+  border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: black;
+}
+
 li{
   list-style-type: none;
   border: 1px solid white;
+  color: white;
+  padding: 10px;
 }
-
 
 .search{
   float: left;
   width: 200px;
   margin-top: 50px;
+}
+
+.name{
+  font-weight: bold;
+}
+
+.side{
+  padding: 60px;
+  width: 300px;
+  float: left;
+  margin: 3%;
+}
+.listofBars{
+  margin: 0;
+  padding: 0;
+  margin-right: -26px;
+  margin-left: -55px;
+}
+
+.results{
+  color: black;
 }

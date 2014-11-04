@@ -1,19 +1,44 @@
 var all_bars= new Bars();
+var newSearch;
+var searchResults=[];
 
-all_bars.fetch().done( function(a){
-	var barsview = new BarsView({
-	collection: all_bars,
-	});
+$('#searchButton').on('click', function(){
+	newSearch= $('#searchInput').val();
 
-var findbars=all_bars.where({location: 'edgewood'});
+var findbars=all_bars.where({location: newSearch});
 console.log(findbars);
 
 findbars.forEach(function (a){
 	var b= a.get('name');
 	console.log(b);
+	searchResults.push(b);
+	console.log(searchResults);
+	$('.listofResults').html('<li class="results">' + searchResults + '</li>');
+});
 });
 
+all_bars.fetch().done( function(a){
+	var barsview = new BarsView({
+	collection: all_bars,
+	});
 });
+
+// var findbars=all_bars.where({location: newSearch});
+// console.log(findbars);
+
+
+// findbars.forEach(function (a){
+// 	var b= a.get('name');
+// 	console.log(b);
+// });
+
+
+
+
+
+
+
+
 
 
 var self=this;
