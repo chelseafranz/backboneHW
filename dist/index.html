@@ -16,14 +16,49 @@
   <body>
 
     <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      
-      <ul class="listofBars">
-        
+      <h1>Time to Drink.</h1>
 
+      <ul class="listofBars">
       </ul>
+
       
     </div>
+
+<div class="side">
+    <div class="add">
+        <h2>Add a Bar.</h2>
+        <input placeholder="name" id="nameofBar" type="text">
+        <input placeholder="location" id="locationofBar" type="text">
+        <input placeholder="type" id="typeofBar" type="text">
+        <input placeholder="specialties" id="specialtiesofBar" type="text">
+        <button id="nameButton"><span class="fontelico-emo-beer"></span>
+</button>
+    </div>
+
+    <div class="search">
+        <h2>Find a Bar.</h2>
+        <input id="searchInput" placeholder="find a bar by neighborhood">
+        <button id="searchButton"><span class="iconicstroke-magnifying-glass"></span></button>
+
+        <ul class="listofResults"></ul>
+        
+    </div>
+</div>
+
+
+
+    <script id="bars" type="text/template">
+<li>
+    <span class="name"><%= name %> </span>
+    in 
+    <span class="location"><%= location%></span> 
+    is a total 
+    <i><%=type%></i> 
+    bar, known for 
+    <%= specialties%>
+</li>
+    </script>
+
 
     <script src="scripts/vendor.js"></script>
 
