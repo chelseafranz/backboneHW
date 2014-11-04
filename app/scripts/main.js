@@ -1,10 +1,15 @@
 var all_bars= new Bars();
 
-all_bars.fetch().done( function(){
+all_bars.fetch().done( function(a){
 	var barsview = new BarsView({
 	collection: all_bars,
 	});
+
+var findWhere=all_bars.where({location: 'edgewood'});
+console.log(findWhere);
+
 });
+
 
 var self=this;
 
@@ -27,16 +32,30 @@ $('#nameButton').on('click', function(a){
 
 });
 
-$('#searchButton').on('click', function(){
-	var search= $('#searchInput').val();
+
+
+
+
+// $('#searchButton').on('click', function(){
+// 	var search= $('#searchInput').val();
+// 	var barsList;
+
+// 	all_bars.fetch().done(function(){
+// 		barsList= new BarsView({
+// 		collection: all_bars
+// 	});
+
+// 	});
 		
-		
+// });
+
+// });
+
+// all_bars.find(function(x) {
+//     return _.findWhere(x.get('location'), {'edgewood'});
+
+// })
 
 
-		if(search == 'edgewood'){
-			console.log('find');
-		}else{
-			console.log('what');
-		}
 
-});
+
