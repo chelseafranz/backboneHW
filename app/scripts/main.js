@@ -5,8 +5,13 @@ all_bars.fetch().done( function(a){
 	collection: all_bars,
 	});
 
-var findWhere=all_bars.where({location: 'edgewood'});
-console.log(findWhere);
+var findbars=all_bars.where({location: 'edgewood'});
+console.log(findbars);
+
+findbars.forEach(function (a){
+	var b= a.get('name');
+	console.log(b);
+});
 
 });
 
