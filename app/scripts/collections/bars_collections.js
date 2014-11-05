@@ -1,6 +1,8 @@
-var Bars= Backbone.Collection.extend({
+(function () {
+App.Collections.Bars= Backbone.Collection.extend({
 
-	model: Bar,
+	model: App.Models.Bar,
 	url: 'http://tiy-atl-fe-server.herokuapp.com/collections/mybars'
 
 });
+}());

@@ -1,44 +1,13 @@
-var all_bars= new Bars();
-var newSearch;
-var searchResults=[];
 
-$('#searchButton').on('click', function(){
-	newSearch= $('#searchInput').val();
+(function () {
 
-var findbars=all_bars.where({location: newSearch});
-console.log(findbars);
+App.Bars= new App.Collections.Bars();
 
-findbars.forEach(function (a){
-	var b= a.get('name');
-	console.log(b);
-	searchResults.push(b);
-	console.log(searchResults);
-	$('.listofResults').html('<li class="results">' + searchResults + '</li>');
-});
-});
-
-all_bars.fetch().done( function(a){
-	var barsview = new BarsView({
-	collection: all_bars,
+App.Bars.fetch().done( function(){
+	App.Views.BarsView = new App.Views.BarsView({
+	// collection: all_bars,
 	});
 });
-
-// var findbars=all_bars.where({location: newSearch});
-// console.log(findbars);
-
-
-// findbars.forEach(function (a){
-// 	var b= a.get('name');
-// 	console.log(b);
-// });
-
-
-
-
-
-
-
-
 
 
 var self=this;
@@ -50,18 +19,24 @@ $('#nameButton').on('click', function(a){
 	var newBartype=$('#typeofBar').val();
 	var newBarSpecialties=$('#specialtiesofBar').val();
 
-	var newBar= new Bar({
+	App.Models.newBar= new App.Models.Bar({
 		name: newBarName,
 		location: newBarLocation,
 		type: newBartype,
 		specialties: newBarSpecialties
 
 	});
-	all_bars.add(newBar);
-	newBar.save();
+	App.Bars.add(App.Models.newBar);
+	App.Models.newBar.save();
 
 });
 
+// App.Bars.fetch().done(function(){
+// 		barsList= new App.Views.BarsView({
+	
+// 	});
+
+}());
 
 
 
@@ -70,10 +45,7 @@ $('#nameButton').on('click', function(a){
 // 	var search= $('#searchInput').val();
 // 	var barsList;
 
-// 	all_bars.fetch().done(function(){
-// 		barsList= new BarsView({
-// 		collection: all_bars
-// 	});
+
 
 // 	});
 		

@@ -1,4 +1,5 @@
-var Bar= Backbone.Model.extend({
+(function () {
+App.Models.Bar= Backbone.Model.extend({
 
 	defaults:{
 		name:'',
@@ -15,3 +16,4 @@ var Bar= Backbone.Model.extend({
 
 	},
 });
+}());

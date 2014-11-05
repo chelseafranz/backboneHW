@@ -1,27 +1,32 @@
-var BarsView= Backbone.View.extend({
+
+(function () {
+App.Views.BarsView= Backbone.View.extend({
 
 	tagName: 'ul',
 	className: 'bar',
 
-	initialize: function(options){
-		this.render(options.collection)
+	initialize: function(){
+		this.render();
+
+      this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      // Get our Element On Our Page
+      $('#barsList').html(this.$el);
 	},
 
-	render: function(collection){
+	render: function(){
 		var self= this;
 
+		this.$el.empty();
 
-	var template= $('#bars').html();
-	var rendered= _.template(template);
+	this.collection.each(function(b){
+	self.$el.append(self.template(b.toJSON()));
+});
 
-	_.each(collection.models, function(x){
-
-		self.$el.append(rendered(x.attributes));
-	});
-
-	$('.listofBars').html(this.el);
 	return this;
+	
 	}
 
 });
-
+}());
