@@ -1,4 +1,34 @@
-var Bar= Backbone.Model.extend({
+(function () {
+
+  App.Routers.AppRouter = Backbone.Router.extend({
+
+    initialize: function () {
+      // Light the Fire
+      Backbone.history.start();
+    },
+
+    routes: {
+      '' : 'home',
+      'edit/:id' : 'editBars'
+    },
+
+    home: function () {
+      new App.Views.AddBar();
+      new App.Views.ListBar({ collection: App.bars });
+    },
+
+    editBars: function (id) {
+
+      var b = App.bars.get(id);
+
+      new App.Views.SingleBar({ bar: b });
+    }
+
+  });
+
+}());
+(function () {
+App.Models.Bar= Backbone.Model.extend({
 
 	defaults:{
 		name:'',
@@ -15,81 +45,70 @@ var Bar= Backbone.Model.extend({
 
 	},
 });
-var Bars= Backbone.Collection.extend({
+}());
+(function () {
+App.Collections.Bars= Backbone.Collection.extend({
 
-	model: Bar,
+	model: App.Models.Bar,
 	url: 'http://tiy-atl-fe-server.herokuapp.com/collections/mybars'
 
 });
-var BarsView= Backbone.View.extend({
+}());
+
+(function () {
+App.Views.BarsView= Backbone.View.extend({
 
 	tagName: 'ul',
 	className: 'bar',
 
-	initialize: function(options){
-		this.render(options.collection)
+	initialize: function(){
+		this.render();
+
+      this.collection.off();
+      this.collection.on('sync', this.render, this);
+
+      // Get our Element On Our Page
+      $('#barsList').html(this.$el);
 	},
 
-	render: function(collection){
+	render: function(){
 		var self= this;
 
+		this.$el.empty();
 
-	var template= $('#bars').html();
-	var rendered= _.template(template);
+	this.collection.each(function(b){
+	self.$el.append(self.template(b.toJSON()));
+});
 
-	_.each(collection.models, function(x){
-
-		self.$el.append(rendered(x.attributes));
-	});
-
-	$('.listofBars').html(this.el);
 	return this;
+	
 	}
 
 });
+}());
 
+// render: function () {
+//       var self = this;
 
-var all_bars= new Bars();
-var newSearch;
-var searchResults=[];
+//       // Empty out 
+//       this.$el.empty();
 
-$('#searchButton').on('click', function(){
-	newSearch= $('#searchInput').val();
+//       this.collection.each(function (c) {
+//         self.$el.append(self.template(c.toJSON()));
+//       });
 
-var findbars=all_bars.where({location: newSearch});
-console.log(findbars);
+//       return this;
+//     }
 
-findbars.forEach(function (a){
-	var b= a.get('name');
-	console.log(b);
-	searchResults.push(b);
-	console.log(searchResults);
-	$('.listofResults').html('<li class="results">' + searchResults + '</li>');
-});
-});
+(function () {
 
-all_bars.fetch().done( function(a){
-	var barsview = new BarsView({
-	collection: all_bars,
+App.Bars= new App.Collections.Bars();
+
+App.Bars.fetch().done( function(){
+	App.Views.BarsView = new App.Views.BarsView({
+	// collection: all_bars,
 	});
 });
-
-// var findbars=all_bars.where({location: newSearch});
-// console.log(findbars);
-
-
-// findbars.forEach(function (a){
-// 	var b= a.get('name');
-// 	console.log(b);
-// });
-
-
-
-
-
-
-
-
 
 
 var self=this;
@@ -101,18 +120,24 @@ $('#nameButton').on('click', function(a){
 	var newBartype=$('#typeofBar').val();
 	var newBarSpecialties=$('#specialtiesofBar').val();
 
-	var newBar= new Bar({
+	App.Models.newBar= new App.Models.Bar({
 		name: newBarName,
 		location: newBarLocation,
 		type: newBartype,
 		specialties: newBarSpecialties
 
 	});
-	all_bars.add(newBar);
-	newBar.save();
+	App.Bars.add(App.Models.newBar);
+	App.Models.newBar.save();
 
 });
 
+// App.Bars.fetch().done(function(){
+// 		barsList= new App.Views.BarsView({
+	
+// 	});
+
+}());
 
 
 
@@ -121,10 +146,7 @@ $('#nameButton').on('click', function(a){
 // 	var search= $('#searchInput').val();
 // 	var barsList;
 
-// 	all_bars.fetch().done(function(){
-// 		barsList= new BarsView({
-// 		collection: all_bars
-// 	});
+
 
 // 	});
 		
