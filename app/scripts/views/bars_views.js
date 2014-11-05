@@ -1,11 +1,17 @@
 
 (function () {
+	
 App.Views.BarsView= Backbone.View.extend({
-
+	
 	tagName: 'ul',
 	className: 'bar',
+	
+	events:{},
+
+	template: _.template($('#bars').html()),
 
 	initialize: function(){
+
 		this.render();
 
       this.collection.off();
@@ -15,14 +21,15 @@ App.Views.BarsView= Backbone.View.extend({
       $('#barsList').html(this.$el);
 	},
 
-	render: function(){
+
+	render: function() {
 		var self= this;
 
 		this.$el.empty();
 
-	this.collection.each(function(b){
+	this.collection.each(function (b) {
 	self.$el.append(self.template(b.toJSON()));
-});
+	});
 
 	return this;
 	
@@ -30,3 +37,18 @@ App.Views.BarsView= Backbone.View.extend({
 
 });
 }());
+
+  //   render: function () {
+  //     var self = this;
+
+  //     // Empty out 
+  //     this.$el.empty();
+
+  //     this.collection.each(function (c) {
+  //       self.$el.append(self.template(c.toJSON()));
+  //     });
+
+  //     return this;
+  //   }
+
+  // });

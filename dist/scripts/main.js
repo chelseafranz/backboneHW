@@ -9,19 +9,19 @@
 
     routes: {
       '' : 'home',
-      'edit/:id' : 'editBars'
+     'edit/:id' : 'editBars'
     },
 
     home: function () {
       new App.Views.AddBar();
-      new App.Views.ListBar({ collection: App.bars });
+      new App.Views.BarsView({ collection: App.Bars });
     },
 
     editBars: function (id) {
 
-      var b = App.bars.get(id);
+      var b = App.Bars.get(id);
 
-      new App.Views.SingleBar({ bar: b });
+      new App.Views.OneBarView({ bar: b });
     }
 
   });
@@ -54,12 +54,53 @@ App.Collections.Bars= Backbone.Collection.extend({
 
 });
 }());
+(function () {
+
+App.Views.AddBar = Backbone.View.extend({
+
+	events: {
+		'submit #AddBar' : 'addBar'
+
+	},
+
+	initialize: function(){
+		this.render();
+		$('#barForm').html(this.$el);
+	},
+
+	render: function (){
+		this.$el.html($('#addTemplate').html());
+	},
+
+	addBar: function(e){
+		e.preventDefault();
+
+		var b= App.Models.Bar({
+			name: $('#bar_name').val(),
+			location: $('#bar_location').val(),
+			type: $('#bar_type').val(),
+			specialties: $('#bar_specialties').val()
+		});
+
+		App.Bars.add(b).save();
+	}
+
+});
+}());
+// (function () {
+// App.Views.OneBarView= Backbone.View.extend({
+	
+// }());
 
 (function () {
 App.Views.BarsView= Backbone.View.extend({
 
 	tagName: 'ul',
 	className: 'bar',
+
+	events:{},
+
+	template: _.template($('#bars').html()),
 
 	initialize: function(){
 		this.render();
@@ -87,72 +128,23 @@ App.Views.BarsView= Backbone.View.extend({
 });
 }());
 
-// render: function () {
-//       var self = this;
-
-//       // Empty out 
-//       this.$el.empty();
-
-//       this.collection.each(function (c) {
-//         self.$el.append(self.template(c.toJSON()));
-//       });
-
-//       return this;
-//     }
 
 (function () {
 
 App.Bars= new App.Collections.Bars();
 
 App.Bars.fetch().done( function(){
-	App.Views.BarsView = new App.Views.BarsView({
-	// collection: all_bars,
-	});
+	
 });
 
 
 var self=this;
-
-$('#nameButton').on('click', function(a){
-	a.preventDefault;
-	var newBarName= $('#nameofBar').val();
-	var newBarLocation=$('#locationofBar').val();
-	var newBartype=$('#typeofBar').val();
-	var newBarSpecialties=$('#specialtiesofBar').val();
-
-	App.Models.newBar= new App.Models.Bar({
-		name: newBarName,
-		location: newBarLocation,
-		type: newBartype,
-		specialties: newBarSpecialties
-
-	});
-	App.Bars.add(App.Models.newBar);
-	App.Models.newBar.save();
-
-});
-
-// App.Bars.fetch().done(function(){
-// 		barsList= new App.Views.BarsView({
-	
-// 	});
 
 }());
 
 
 
 
-// $('#searchButton').on('click', function(){
-// 	var search= $('#searchInput').val();
-// 	var barsList;
-
-
-
-// 	});
-		
-// });
-
-// });
 
 // all_bars.find(function(x) {
 //     return _.findWhere(x.get('location'), {'edgewood'});

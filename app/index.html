@@ -26,8 +26,8 @@
     <div class="hero-unit">
       <h1>Time to Drink.</h1>
 
-      <ul id="barsList">
-      </ul>
+      <div id="barsList">
+      </div>
       <div id="barForm"></div>
 
       
@@ -61,14 +61,14 @@
     </br>
     <input type="text" id="bar_type" placeholder="Type" />
     <input type="text" id="bar_specialties" placeholder="Specialties"/>
-    <button><span class="fontelico-emo-beer"></span></button>
+    <button id="addABar"><span class="fontelico-emo-beer"></span></button>
         </form>
-        <hr />
+      
     </script> 
 
 
-    <script id="bars" type="text/template">
-<li>
+    <script type="text/template" id="bars">
+<li id="<%= _id %>">
     <span class="name"><%= name %> </span>
     in 
     <span class="location"><%= location%></span> 
@@ -95,7 +95,7 @@
         App.Routers = {};
     </script>
         <!-- build:js scripts/main.js -->
-        <script src="scripts/routes/app_routes.js"></script>
+        <script src="scripts/routes/app_router.js"></script>
         <script src="scripts/models/bars_models.js"></script>
         <script src="scripts/collections/bars_collections.js"></script>
         <script src="scripts/views/add_bar_view.js"></script>

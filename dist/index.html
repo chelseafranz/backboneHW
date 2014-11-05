@@ -20,11 +20,12 @@
 
       <ul id="barsList">
       </ul>
+      <div id="barForm"></div>
 
       
     </div>
 
-<div class="side">
+<!-- <div class="side">
     <div class="add">
         <h2>Add a Bar.</h2>
         <input placeholder="name" id="nameofBar" type="text">
@@ -33,7 +34,7 @@
         <input placeholder="specialties" id="specialtiesofBar" type="text">
         <button id="nameButton"><span class="fontelico-emo-beer"></span>
 </button>
-    </div>
+    </div> -->
 
     <div class="search">
         <h2>Find a Bar.</h2>
@@ -45,6 +46,17 @@
     </div>
 </div>
 
+<script type="text/template" id="addTemplate">
+    <form id="addBar">
+    <input type="text" id="bar_name" placeholder="Name" />
+    <input type="text" id="bar_location" placeholder="Location" />
+    </br>
+    <input type="text" id="bar_type" placeholder="Type" />
+    <input type="text" id="bar_specialties" placeholder="Specialties"/>
+    <button><span class="fontelico-emo-beer"></span></button>
+        </form>
+        <hr />
+    </script> 
 
 
     <script id="bars" type="text/template">

@@ -1,4 +1,4 @@
-(function () {
-App.Views.OneBarView= Backbone.View.extend({
-
-}());
+// (function () {
+// App.Views.OneBarView= Backbone.View.extend({
+	
+// }());

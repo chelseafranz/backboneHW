@@ -1,9 +1,9 @@
 (function () {
 
-App.Views.AddBar = Backbone.View.Extend({
+App.Views.AddBar = Backbone.View.extend({
 
 	events: {
-		'submit #AddBar' : 'addBar'
+		'submit #addBar' : 'addBar'
 
 	},
 
@@ -17,9 +17,9 @@ App.Views.AddBar = Backbone.View.Extend({
 	},
 
 	addBar: function(e){
-		e.preventDefault;
+		e.preventDefault();
 
-		var b= App.Models.Bar({
+		var b= new App.Models.Bar({
 			name: $('#bar_name').val(),
 			location: $('#bar_location').val(),
 			type: $('#bar_type').val(),
@@ -28,11 +28,6 @@ App.Views.AddBar = Backbone.View.Extend({
 
 		App.Bars.add(b).save();
 	}
-
-
-
-
-
 
 });
 }());
