@@ -26,12 +26,24 @@ App.Views.OneBarView= Backbone.View.extend({
       this.$el.html(this.template(this.options.bar.toJSON()));
 	},
 
-	// updateBar:
+	updateBar:function (a){
+		a.preventDefault();
 
-	// deleteBar:
+		this.options.bar.set({
+			name: $('#update_name').val(),
+			location: $('#update_location').val(),
+			type: $('#update_type').val(),
+			specialties: $('#update_specialties').val()
+		});
+		this.options.bar.save();
+		App.router.navigate('', {trigger: true});
+	},
 
+	deleteBar: function (){
 
-
+		this.options.bar.destroy();
+		App.router.navigate('', {trigger: true});
+	}
 
   });
 }());
