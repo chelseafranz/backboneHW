@@ -13,6 +13,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <link href='http://fonts.googleapis.com/css?family=Lobster|Oswald' rel='stylesheet' type='text/css'>
+
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -25,21 +27,14 @@
 
     <div class="hero-unit">
       <h1>Time to Drink.</h1>
-
+    <div id="barForm"></div>
       <div id="barsList">
       </div>
-      <div id="barForm"></div>
-
-      
+       
     </div>
 
 
-    <div class="search">
-        <h2>Find a Bar.</h2>
-        <input id="searchInput" placeholder="find a bar by neighborhood">
-        <button id="searchButton"><span class="iconicstroke-magnifying-glass"></span></button>
-
-        <ul class="listofResults"></ul>
+        <div class="listofResults"></div>
         
     </div>
 </div>
@@ -51,7 +46,8 @@
     </br>
     <input type="text" id="bar_type" placeholder="Type" />
     <input type="text" id="bar_specialties" placeholder="Specialties"/>
-    <button id="addABar"><span class="fontelico-emo-beer"></span></button>
+    </br>
+    <button id="addABar">Add a Bar</button>
         </form>
       
     </script> 
@@ -85,6 +81,14 @@
       </li>
     </script>
 
+    <script type="text/template" id="searchTemplate">
+        <a href="#/search/<%=_id %>">
+        <form id="searchForm">
+<input type="text" placeholder="search by location" id="searchInput"/>
+<button id="searchButton"><span class="iconicstroke-magnifying-glass"></span></button>         
+        </form>
+    </script>
+
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -101,6 +105,7 @@
     </script>
         <!-- build:js scripts/main.js -->
         <script src="scripts/routes/app_router.js"></script>
+        <script type="scripts/views/search_view.js"></script>
         <script src="scripts/models/bars_models.js"></script>
         <script src="scripts/collections/bars_collections.js"></script>
         <script src="scripts/views/add_bar_view.js"></script>

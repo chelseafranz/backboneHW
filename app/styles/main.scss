@@ -13,35 +13,52 @@
   font-family: 'IconicStroke', sans-serif;
 }
 
+$font1: 'Oswald';
+$font2: 'Lobster';
+
 a{
   text-decoration: none;
 }
 
 
 .hero-unit {
-  margin: 3% 10%;
+  margin: 0% 25%;
   display: block;
   width: 600px;
   font-size: 18px;
   font-weight: 200;
   background-color: black;
   color: white;
-  border-radius: 6px;
   padding: 60px;
   float: right;
+  font-family: $font1;
   h1 {
+    font-family: $font2;
     font-size: 60px;
     line-height: 1;
     letter-spacing: -1px;
   }
 }
 
+#barForm{
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 5px;
+}
+
+
 .fontelico-emo-beer{
   color: white;
-  font-size: 2em;
+  font-size: 1.5em;
+ 
+  border-radius: 2px;
+  float: right;
 }
 .iconicstroke-magnifying-glass{
   font-size: 2em;
+  border-radius: 3px;
+   border: 2px solid white;
+   margin-left: 10px;
 }
 h2{
   margin-bottom: 5px;
@@ -62,6 +79,8 @@ button{
   border: none;
   color: white;
   background-color: black;
+  border: 1px solid white;
+  padding: 5px;
 }
 
 li{
