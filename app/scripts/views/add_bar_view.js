@@ -27,6 +27,7 @@ App.Views.AddBar = Backbone.View.extend({
 		});
 
 		App.Bars.add(b).save();
+		//empty input after subimt.save
 	}
 
 });

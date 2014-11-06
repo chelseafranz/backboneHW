@@ -5,6 +5,8 @@ App.Views.BarsView= Backbone.View.extend({
 	
 	tagName: 'ul',
 	className: 'bar',
+
+	comparator: 'location',
 	
 	events:{
 		'dblclick li': 'goodbye'
@@ -22,6 +24,8 @@ App.Views.BarsView= Backbone.View.extend({
       // Get our Element On Our Page
       $('#barsList').html(this.$el);
 	},
+
+	// comparator: 'location',
 
 	goodbye: function(){
 		console.log('goodbye');
