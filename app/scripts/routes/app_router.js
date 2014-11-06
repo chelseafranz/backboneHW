@@ -3,7 +3,7 @@
   App.Routers.AppRouter = Backbone.Router.extend({
 
     initialize: function () {
-      // Light the Fire
+
       Backbone.history.start();
     },
 
@@ -18,6 +18,7 @@
     },
 
     editBars: function (id) {
+      console.log('edit bars');
 
       var b = App.Bars.get(id);
 

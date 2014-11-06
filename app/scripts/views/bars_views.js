@@ -6,7 +6,9 @@ App.Views.BarsView= Backbone.View.extend({
 	tagName: 'ul',
 	className: 'bar',
 	
-	events:{},
+	events:{
+		'dblclick li': 'goodbye'
+	},
 
 	template: _.template($('#bars').html()),
 
@@ -21,6 +23,9 @@ App.Views.BarsView= Backbone.View.extend({
       $('#barsList').html(this.$el);
 	},
 
+	goodbye: function(){
+		console.log('goodbye');
+	},
 
 	render: function() {
 		var self= this;

@@ -13,6 +13,11 @@
   font-family: 'IconicStroke', sans-serif;
 }
 
+a{
+  text-decoration: none;
+}
+
+
 .hero-unit {
   margin: 3% 10%;
   display: block;
@@ -64,6 +69,12 @@ li{
   border: 1px solid white;
   color: white;
   padding: 10px;
+  margin-bottom: 5px;
+
+  &:hover{
+    border: 3px solid white;
+    margin-bottom: 2px;
+  }
 }
 
 .search{
