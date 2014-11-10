@@ -35,6 +35,7 @@ App.Views.OneBarView= Backbone.View.extend({
 			type: $('#update_type').val(),
 			specialties: $('#update_specialties').val()
 		});
+		this.$el.empty();
 		this.options.bar.save();
 		App.router.navigate('', {trigger: true});
 	},

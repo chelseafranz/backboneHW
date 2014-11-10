@@ -10,7 +10,7 @@
     routes: {
       '' : 'home',
      'edit/:id' : 'editBars',
-     'add/:addBar': 'addNewBar'
+     'add/:AddBar': 'addNewBar'
     },
 
     home: function () {
@@ -26,7 +26,7 @@
       new App.Views.OneBarView({ bar: b });
     },
 
-    addNewBar: function(addBar){
+    addNewBar: function(AddBar){
       var c = App.Bars.get(addBar);
       new App.Views.AddBar({ bar: c});
     }

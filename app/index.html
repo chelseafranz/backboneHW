@@ -24,9 +24,39 @@
     <!-- endbuild -->
   </head>
   <body>
+    <div class="sidebar">
+   <!--      <ul class="accordion">
+  <li>
+    <a href="javascript:void(0)" class="js-accordion-trigger">Search</a>
+    <ul class="submenu">
+      <li>
+        <a href="javascript:void(0)">Sub Item 1</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">Sub Item 2</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="js-accordion-trigger">Add Bar</a>
+    <ul class="submenu">
+      <li>
+        <a href="javascript:void(0)">Sub Item 1</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">Sub Item 2</a>
+      </li>
+    </ul>
+  </li>
+</ul> -->
+
+    </div>
 
     <div class="hero-unit">
       <h1>Time to Drink.</h1>
+
+    
+
     <div id="barForm"></div>
       <div id="barsList">
       </div>
@@ -39,9 +69,9 @@
     </div>
 </div>
 
-<script type="text/template" id="addTemplate">
 
-    <form id="addBar">
+<script type="text/template" id="addTemplate">
+   <form id="addBar">
     <input type="text" id="bar_name" placeholder="Name" />
     <input type="text" id="bar_location" placeholder="Location" />
     </br>
@@ -56,14 +86,13 @@
 
     <script type="text/template" id="bars">
     <a href="#/edit/<%=_id %>">
-    <li id="<%= _id %>">
-    <span class="name"><%= name %> </span>
-    in 
-    <span class="location"><%= location%></span> 
-    is a total 
-    <i><%=type%></i> 
-    bar, known for 
-    <%= specialties%>
+    <li id="<%= _id %>" class="nb">
+    <span class="name"><%= name %>, in</span>
+    
+    <span class="location"><%= location%>is a total</span> 
+    <span class="type"><%=type%> bar, known for</span>
+   
+    <span class="specialties"><%= specialties%>.  </span>
     </li>
 </a>
     </script>
