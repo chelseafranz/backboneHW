@@ -13,7 +13,7 @@ App.Models.Bar= Backbone.Model.extend({
 	initialize: function () {
 		var added= this.get('name');
 		console.log(added + ' has been added');
-		alert(added+ 'has been added!')	
+		
 
 	},
 });
