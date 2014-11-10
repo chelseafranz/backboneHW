@@ -9,68 +9,107 @@
 
     <link rel="stylesheet" href="styles/vendor.css">
 
+    <link href='http://fonts.googleapis.com/css?family=Lobster|Oswald' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="styles/main.css">
 
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
   <body>
+    <div class="sidebar">
+   <!--      <ul class="accordion">
+  <li>
+    <a href="javascript:void(0)" class="js-accordion-trigger">Search</a>
+    <ul class="submenu">
+      <li>
+        <a href="javascript:void(0)">Sub Item 1</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">Sub Item 2</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:void(0)" class="js-accordion-trigger">Add Bar</a>
+    <ul class="submenu">
+      <li>
+        <a href="javascript:void(0)">Sub Item 1</a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">Sub Item 2</a>
+      </li>
+    </ul>
+  </li>
+</ul> -->
+
+    </div>
 
     <div class="hero-unit">
       <h1>Time to Drink.</h1>
 
-      <ul id="barsList">
-      </ul>
-      <div id="barForm"></div>
+    
 
-      
+    <div id="barForm"></div>
+      <div id="barsList">
+      </div>
+       
     </div>
 
-<!-- <div class="side">
-    <div class="add">
-        <h2>Add a Bar.</h2>
-        <input placeholder="name" id="nameofBar" type="text">
-        <input placeholder="location" id="locationofBar" type="text">
-        <input placeholder="type" id="typeofBar" type="text">
-        <input placeholder="specialties" id="specialtiesofBar" type="text">
-        <button id="nameButton"><span class="fontelico-emo-beer"></span>
-</button>
-    </div> -->
 
-    <div class="search">
-        <h2>Find a Bar.</h2>
-        <input id="searchInput" placeholder="find a bar by neighborhood">
-        <button id="searchButton"><span class="iconicstroke-magnifying-glass"></span></button>
-
-        <ul class="listofResults"></ul>
+        <div class="listofResults"></div>
         
     </div>
 </div>
 
+
 <script type="text/template" id="addTemplate">
-    <form id="addBar">
+   <form id="addBar">
     <input type="text" id="bar_name" placeholder="Name" />
     <input type="text" id="bar_location" placeholder="Location" />
     </br>
     <input type="text" id="bar_type" placeholder="Type" />
     <input type="text" id="bar_specialties" placeholder="Specialties"/>
-    <button><span class="fontelico-emo-beer"></span></button>
+    </br>
+    <button id="addABar">Add a Bar</button>
         </form>
-        <hr />
+      
     </script> 
 
 
-    <script id="bars" type="text/template">
-<li>
-    <span class="name"><%= name %> </span>
-    in 
-    <span class="location"><%= location%></span> 
-    is a total 
-    <i><%=type%></i> 
-    bar, known for 
-    <%= specialties%>
-</li>
+    <script type="text/template" id="bars">
+    <a href="#/edit/<%=_id %>">
+    <li id="<%= _id %>" class="nb">
+    <span class="name"><%= name %>, in</span>
+    
+    <span class="location"><%= location%>is a total</span> 
+    <span class="type"><%=type%> bar, known for</span>
+   
+    <span class="specialties"><%= specialties%>.  </span>
+    </li>
+</a>
     </script>
 
+ <script type="text/template" id="editBarTemplate">
+      <li class="card" id="<%= _id %>">
+        <form id="updateBar">
+            <div class="card-header">
+              <input type="text" value="<%= name %>" id="update_name" />
+              <input type="text" value="<%= location %>" id="update_location" />
+              <input type="text" value="<%= type %>" id="update_type" />
+              <input type="text" value="<%= specialties %>" id="update_specialties" />
+                <button>Update</button>
+                <button id="delete">Delete</button>
+        </form>
+      </li>
+    </script>
+
+    <script type="text/template" id="searchTemplate">
+        <a href="#/search/<%=_id %>">
+        <form id="searchForm">
+<input type="text" placeholder="search by location" id="searchInput"/>
+<button id="searchButton"><span class="iconicstroke-magnifying-glass"></span></button>         
+        </form>
+    </script>
 
     <script src="scripts/vendor.js"></script>
 <script type="text/javascript">

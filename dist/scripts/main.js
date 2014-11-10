@@ -3,13 +3,14 @@
   App.Routers.AppRouter = Backbone.Router.extend({
 
     initialize: function () {
-      // Light the Fire
+
       Backbone.history.start();
     },
 
     routes: {
       '' : 'home',
-     'edit/:id' : 'editBars'
+     'edit/:id' : 'editBars',
+     'add/:AddBar': 'addNewBar'
     },
 
     home: function () {
@@ -18,10 +19,16 @@
     },
 
     editBars: function (id) {
+      console.log('edit bars');
 
       var b = App.Bars.get(id);
 
       new App.Views.OneBarView({ bar: b });
+    },
+
+    addNewBar: function(AddBar){
+      var c = App.Bars.get(addBar);
+      new App.Views.AddBar({ bar: c});
     }
 
   });
@@ -41,7 +48,8 @@ App.Models.Bar= Backbone.Model.extend({
 
 	initialize: function () {
 		var added= this.get('name');
-		console.log(added + ' has been added');	
+		console.log(added + ' has been added');
+		alert(added+ 'has been added!')	
 
 	},
 });
@@ -50,7 +58,8 @@ App.Models.Bar= Backbone.Model.extend({
 App.Collections.Bars= Backbone.Collection.extend({
 
 	model: App.Models.Bar,
-	url: 'http://tiy-atl-fe-server.herokuapp.com/collections/mybars'
+	url: 'http://tiy-atl-fe-server.herokuapp.com/collections/mybars',
+	comparator: 'location',
 
 });
 }());
@@ -59,7 +68,7 @@ App.Collections.Bars= Backbone.Collection.extend({
 App.Views.AddBar = Backbone.View.extend({
 
 	events: {
-		'submit #AddBar' : 'addBar'
+		'submit #addBar' : 'addBar'
 
 	},
 
@@ -75,7 +84,7 @@ App.Views.AddBar = Backbone.View.extend({
 	addBar: function(e){
 		e.preventDefault();
 
-		var b= App.Models.Bar({
+		var b= new App.Models.Bar({
 			name: $('#bar_name').val(),
 			location: $('#bar_location').val(),
 			type: $('#bar_type').val(),
@@ -83,26 +92,77 @@ App.Views.AddBar = Backbone.View.extend({
 		});
 
 		App.Bars.add(b).save();
+		//empty input after subimt.save
 	}
 
 });
 }());
-// (function () {
-// App.Views.OneBarView= Backbone.View.extend({
-	
-// }());
-
 (function () {
-App.Views.BarsView= Backbone.View.extend({
+App.Views.OneBarView= Backbone.View.extend({
 
 	tagName: 'ul',
-	className: 'bar',
+	className: 'oneBar',
 
-	events:{},
+	events: {
+		'submit #updateBar' : 'updateBar',
+		'click #delete' : 'deleteBar'
+	},
+
+	template: _.template($('#editBarTemplate').html()),
+
+	initialize: function(options){
+		this.options=options;
+		this.render();
+
+		$('#updateBar').empty();
+		$('#barForm').html(this.$el);
+	},
+
+	render: function(){
+		$('#barsList').empty();
+		this.$el.empty();
+
+      this.$el.html(this.template(this.options.bar.toJSON()));
+	},
+
+	updateBar:function (a){
+		a.preventDefault();
+
+		this.options.bar.set({
+			name: $('#update_name').val(),
+			location: $('#update_location').val(),
+			type: $('#update_type').val(),
+			specialties: $('#update_specialties').val()
+		});
+		this.$el.empty();
+		this.options.bar.save();
+		App.router.navigate('', {trigger: true});
+	},
+
+	deleteBar: function (){
+
+		this.options.bar.destroy();
+		App.router.navigate('', {trigger: true});
+	}
+
+  });
+}());
+
+(function () {
+	
+App.Views.BarsView= Backbone.View.extend({
+	
+	tagName: 'ul',
+	className: 'bar',
+	
+	events:{
+		'dblclick li': 'goodbye'
+	},
 
 	template: _.template($('#bars').html()),
 
 	initialize: function(){
+
 		this.render();
 
       this.collection.off();
@@ -112,14 +172,18 @@ App.Views.BarsView= Backbone.View.extend({
       $('#barsList').html(this.$el);
 	},
 
-	render: function(){
+	goodbye: function(){
+		console.log('goodbye');
+	},
+
+	render: function() {
 		var self= this;
 
 		this.$el.empty();
 
-	this.collection.each(function(b){
+	this.collection.each(function (b) {
 	self.$el.append(self.template(b.toJSON()));
-});
+	});
 
 	return this;
 	
@@ -128,13 +192,33 @@ App.Views.BarsView= Backbone.View.extend({
 });
 }());
 
+  //   render: function () {
+  //     var self = this;
+
+  //     // Empty out 
+  //     this.$el.empty();
+
+  //     this.collection.each(function (c) {
+  //       self.$el.append(self.template(c.toJSON()));
+  //     });
+
+  //     return this;
+  //   }
+
+  // });
 
 (function () {
+	$('.js-accordion-trigger').bind('click', function(e){
+  jQuery(this).parent().find('.submenu').slideToggle('fast');  // apply the toggle to the ul
+  jQuery(this).parent().toggleClass('is-expanded');
+  e.preventDefault();
+});
+
 
 App.Bars= new App.Collections.Bars();
 
 App.Bars.fetch().done( function(){
-	
+	App.router= new App.Routers.AppRouter
 });
 
 
