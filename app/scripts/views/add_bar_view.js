@@ -1,6 +1,6 @@
 (function () {
 
-App.Views.AddBar = Backbone.View.extend({
+App.Views.AddBar = Parse.View.extend({
 
 	events: {
 		'submit #addBar' : 'addBar'
@@ -25,9 +25,13 @@ App.Views.AddBar = Backbone.View.extend({
 			type: $('#bar_type').val(),
 			specialties: $('#bar_specialties').val()
 		});
+		b.save(null, {
+			success: function(){
+				App.Bars.add(b);
+				App.router.navigate('', {trigger: true});
+			}
+		})
 
-		App.Bars.add(b).save();
-		//empty input after subimt.save
 	}
 
 });

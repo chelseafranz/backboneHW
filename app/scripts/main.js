@@ -1,11 +1,6 @@
-
+Parse.initialize("aDx1upzE4icJxGUL2x1JzmjgBCieiZV523gYRmAm", "LCGNhObwmsR4PP4i2cl9FSZjXSA7Rd21BA55v7ga");
 (function () {
-	$('.js-accordion-trigger').bind('click', function(e){
-  jQuery(this).parent().find('.submenu').slideToggle('fast');  // apply the toggle to the ul
-  jQuery(this).parent().toggleClass('is-expanded');
-  e.preventDefault();
-});
-
+	
 
 App.Bars= new App.Collections.Bars();
 

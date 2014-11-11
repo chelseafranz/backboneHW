@@ -1,6 +1,7 @@
 (function () {
-App.Models.Bar= Backbone.Model.extend({
-
+App.Models.Bar= Parse.Object.extend({
+	className: 'Bar',
+	idAttribute: 'objectId',
 	defaults:{
 		name:'',
 		location:'',
@@ -8,8 +9,7 @@ App.Models.Bar= Backbone.Model.extend({
 		specialties: ''
 	},
 
-	idAttribute: '_id',
-
+	
 	initialize: function () {
 		var added= this.get('name');
 		console.log(added + ' has been added');

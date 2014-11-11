@@ -1,7 +1,7 @@
 
 (function () {
 	
-App.Views.BarsView= Backbone.View.extend({
+App.Views.BarsView= Parse.View.extend({
 	
 	tagName: 'ul',
 	className: 'bar',
