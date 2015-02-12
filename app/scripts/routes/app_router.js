@@ -6,6 +6,7 @@
 
       Parse.history.start();
     },
+    
 
     routes: {
       '' : 'home',

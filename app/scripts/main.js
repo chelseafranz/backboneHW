@@ -1,10 +1,11 @@
-Parse.initialize("aDx1upzE4icJxGUL2x1JzmjgBCieiZV523gYRmAm", "LCGNhObwmsR4PP4i2cl9FSZjXSA7Rd21BA55v7ga");
+Parse.initialize("f81UbbrmBBfy4h9hU5eB3014AnU8n9jYSOBgQOdP", "IiTpkKDPfSuPONnAo3MxVB0sig7ycmX05gpYVgAe");
 (function () {
 	
 
 App.Bars= new App.Collections.Bars();
 
 App.Bars.fetch().done( function(){
+	console.log('success');
 	App.router= new App.Routers.AppRouter
 });
 
